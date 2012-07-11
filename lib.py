@@ -113,7 +113,7 @@ def index (req):
 
 
 def respond (req, content, title, caption, description, current_module):
-	#req.content_type = "application/xhtml+xml"
+	req.content_type = "text/html; charset=UTF-8"
 	return "%s%s%s" %(generate_header (title, caption, description, current_module), escape (content),generate_footer())
 
 
