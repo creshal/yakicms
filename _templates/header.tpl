@@ -30,7 +30,11 @@
           },
           txt_help: 'By enabling these buttons you enable data transmission to Facebook, Twitter and/or Google and agree to those data being used by them. Note that no data will be transmitted until you enable a button.',
           uri: function (context) {
-            return $(context).parents(".news").find ("h3 a").attr("href");
+            var reluri = $(context).parents(".news").find ("h3 a").attr("href");
+            if (reluri != undefined)
+              return "%(CanonicalName)s%(AbsPrefix)s"+reluri;
+            else
+              return document.location;
           },
           css_path: "/static/socialshareprivacy/socialshareprivacy.css",
           settings_perma: "Permanently activate buttons."

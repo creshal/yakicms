@@ -101,7 +101,7 @@ def _generate_menu (current):
 
 
 def generate_header (title, caption, description, current_module):
-	return get_template("header") % {"title": escape (title, False) ,"caption": escape (caption, False) ,"desc": escape (description, False) ,"site_title":get_config("SiteTitle"),"site_desc": get_config("SiteDesc"),"menu": _generate_menu(current_module),"site_prefix": get_config("SitePrefix"),"headers":_generate_headers()}
+	return get_template("header") % {"title": escape (title, False), "caption": escape (caption, False) ,"desc": escape (description, False) ,"site_title":get_config("SiteTitle"),"site_desc": get_config("SiteDesc"),"menu": _generate_menu(current_module),"site_prefix": get_config("SitePrefix"),"headers":_generate_headers(), "CanonicalName":get_config ("CanonicalName"),"AbsPrefix":absolute_prefix()}
 
 
 def generate_footer ():
