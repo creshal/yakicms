@@ -92,7 +92,7 @@ def generate_feed (req):
 		content = sub ('style=".*?"', "", escape(content))
 		uri = djoin (lib.get_config ("CanonicalName"),prefix,"News","?id="+id)
 		feed += lib.get_template ("feedentry") % {"uri":uri,"title":headline, "mtime":lib.get_time_for_file (filename,True), "content": content, "author": author}
-	req.content_type = "application/atom+xml"
+	req.content_type = "application/atom+xml; charset=UTF-8"
 	return lib.get_template ("feed") % {"uri": djoin (lib.get_config ("CanonicalName"),prefix), "self":  djoin (lib.get_config ("CanonicalName"),prefix,"News","?feed=true"), "mtime": lastmodified, "content": feed}
 
 
