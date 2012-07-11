@@ -1,0 +1,7 @@
+{
+	"NewsPerPage":10,
+	"SiteTitle": "My Blag",
+	"SiteDesc": "Yet Another YakiCMS blag",
+	"SitePrefix": "/cms",
+	"CanonicalName": "http://example.com"
+}

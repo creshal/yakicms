@@ -1,0 +1,17 @@
+{
+	"SnapshotDownloadURI": "/git//%(repo)s/snapshot/%(repo)s-%(version)s.tar",
+	"RepoPath": "/var/www/git/",
+	"win32URI": "%(repo)s-%(version)s-installer.exe",
+	"Repositories": [
+		{
+			"name": "Test1",
+			"repo": "testrepo",
+			"win32": true
+		},
+		{
+			"name": "Test2",
+			"repo": "sourceonly",
+			"win32": false
+		}
+	]
+}

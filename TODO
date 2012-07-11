@@ -1,0 +1,13 @@
+VALIDIERUNGEN FIXEN
+SitePrefix fixen
+
+Later version:
+• SVG ALL the icons!
+• News:
+ • Preview mode?
+ • Comments (reCaptcha? Gravatar?)?
+• Git module?
+• Bugtracking module?
+• Lib: Replace/augment script-header with a lib registry to avoid conflicts (two modules adding two different jq versions e.g.)
+ • register_js_lib (name, version, path)
+   If lib new, add to headers. If older version found, replace. If newer version found, quit

@@ -1,0 +1,31 @@
+{
+	"Entries": [
+		{
+			"name": "FAQ",
+			"uri": "News/?id=1",
+			"uri_is_relative": true,
+			"icon": "/static/faq.png"
+		},
+		{
+			"name": "About",
+			"uri": "about",
+			"src": "about.md",
+			"icon": "/static/about.png",
+			"title": "About",
+			"caption": "About",
+			"description": "Information about this blog"
+		},
+		{
+			"name": "Repository",
+			"uri": "git",
+			"uri_is_relative": true,
+			"icon": "/static/git.png"
+		},
+		{
+			"name": "External site",
+			"uri": "http://bla.example.com",
+			"uri_is_relative": false,
+			"icon": "http://bla.example.com/favicon.ico"
+		}
+	]
+}

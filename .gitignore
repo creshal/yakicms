@@ -1,0 +1,7 @@
+config.json
+*/config.json
+*.pyc
+*/*.pyc
+*/*.news
+*/*.md
+
