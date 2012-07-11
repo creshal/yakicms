@@ -3,7 +3,7 @@
 
   <title>Development Division Information Feed</title>
   <link href="%(uri)s"/>
-  <link rel="self" href="%(uri)s/%(self)s"/>
+  <link rel="self" href="%(self)s"/>
   <updated>%(mtime)s</updated>
   <author>
     <name>The Yaki Syndicate</name>

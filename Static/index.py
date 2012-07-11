@@ -32,8 +32,8 @@ def generate_entries (req=None,current=None):
 	entry_tpl = lib.get_template ("menu")
 	retval = ""
 	for entry in lib.get_config ("Entries","Static"):
-		if "src" in entry: uri = djoin (lib.get_config("SitePrefix"),"Static","?page="+entry["uri"])
-		else:              uri = entry["uri"] if entry["uri_is_relative"] is False else djoin (lib.get_config("SitePrefix"),entry["uri"])
+		if "src" in entry: uri = lib.ljoin ("Static","?page="+entry["uri"])
+		else:              uri = entry["uri"] if entry["uri_is_relative"] is False else lib.ljoin (entry["uri"])
 		retval += entry_tpl % {"icon": entry["icon"], "name": entry["name"], "path": uri, "cls": "em" if current == entry["uri"] else ""}
 	return retval
 

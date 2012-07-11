@@ -1,6 +1,9 @@
 import os,time,datetime,stat,imp
 import json
-from mod_python import apache
+try:
+	from mod_python import apache
+except:
+	print ("You're not supposed to run this directly.")
 
 def get_config (key=None,confdir=""):
 	try:
@@ -83,12 +86,12 @@ def _generate_menu (current):
 	for entry, entry_info in _entries():
 		if current and entry_info["name"] == current["name"]:
 			entry_info = current
-		iconfile = os.path.join (entry,"menuicon.png")
+		iconfile = os.path.join ("/",entry,"menuicon.png")
 		if "menuentry" in entry_info:
 			menuitems.append ((entry_info["order"],entry_info["menuentry"]))
 		else:
 			cls = "em" if current and entry_info["name"] == current["name"] else ""
-			menuitems.append ((entry_info["order"], entry_tpl % {"icon": os.path.join (get_config("SitePrefix"),iconfile), "name": entry_info["name"] if "name" in entry_info else entry, "cls": cls, "path": os.path.join (get_config("SitePrefix"),entry)}))
+			menuitems.append ((entry_info["order"], entry_tpl % {"icon": ljoin (iconfile), "name": entry_info["name"] if "name" in entry_info else entry, "cls": cls, "path": ljoin (entry)}))
 
 	menu = '<div class="menu %(cls)s"><a class="breadcrumb" href="%(site_prefix)s"><img class="inline" src="/static/home.png" alt="home"/>Home</a></div>' % {"site_prefix":get_config("SitePrefix"), "cls": "" if current else "em"}
 	for item in sorted (menuitems, key=lambda item: item[0]):
@@ -129,3 +132,7 @@ def escape (text, allow_html=True, encoding="utf-8"):
 		text = "".join (escape_table.get (c,c) for c in text)
 
 	return text.encode ("ascii","xmlcharrefreplace")
+
+def ljoin (*uri):
+	uri = os.path.join (get_config("SitePrefix"), *uri)
+	return uri

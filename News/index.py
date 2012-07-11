@@ -70,7 +70,7 @@ def parse_news (id,req=None):
 	if mode is "markdown":
 		newscontent = markdown (newscontent)
 
-	return (newstpl % {"headline":headline,"author":author,"date":time,"id":id,"content":newscontent,"SitePrefix":lib.get_config ("SitePrefix")}, headline,author)
+	return (newstpl % {"headline":headline,"author":author,"date":time,"id":id,"content":newscontent,"uri":lib.ljoin ("News","?id="+id)}, headline,author)
 
 
 def _enum_news (req=None):
@@ -80,6 +80,7 @@ def _enum_news (req=None):
 
 
 def generate_feed (req):
+	prefix = lib.get_config ("SitePrefix") if lib.get_config ("SitePrefix") != "/" else ""
 	news = _enum_news ()
 	feed = ""
 	lastmodified = ""
@@ -89,15 +90,15 @@ def generate_feed (req):
 		if id == news[0]: lastmodified = lib.get_time_for_file (filename,True)
 		content, headline, author = parse_news(id)
 		content = sub ('style=".*?"', "", escape(content))
-		uri = djoin (lib.get_config ("CanonicalName"),lib.get_config ("SitePrefix"),"News","?id="+id)
+		uri = djoin (lib.get_config ("CanonicalName"),prefix,"News","?id="+id)
 		feed += lib.get_template ("feedentry") % {"uri":uri,"title":headline, "mtime":lib.get_time_for_file (filename,True), "content": content, "author": author}
 	req.content_type = "application/atom+xml"
-	return lib.get_template ("feed") % {"uri": djoin (lib.get_config ("CanonicalName"),lib.get_config ("SitePrefix")), "self":  djoin (lib.get_config ("CanonicalName"),lib.get_config ("SitePrefix"),"News/?feed=true"), "mtime": lastmodified, "content": feed}
+	return lib.get_template ("feed") % {"uri": djoin (lib.get_config ("CanonicalName"),prefix), "self":  djoin (lib.get_config ("CanonicalName"),prefix,"News","?feed=true"), "mtime": lastmodified, "content": feed}
 
 
 def feeduri (req=None):
 	if req: return
-	return '<link href="%s/?feed=true" type="application/atom+xml" rel="alternate" title="ATOM News Feed" />' % djoin (lib.get_config ("SitePrefix"),"News")
+	return '<link href="%s/?feed=true" type="application/atom+xml" rel="alternate" title="ATOM News Feed" />' % lib.ljoin ("News")
 
 
 def module_info (req=None):
