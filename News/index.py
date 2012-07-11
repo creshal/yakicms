@@ -80,7 +80,7 @@ def _enum_news (req=None):
 
 
 def generate_feed (req):
-	prefix = lib.get_config ("SitePrefix") if lib.get_config ("SitePrefix") != "/" else ""
+	prefix = lib.absolute_prefix()
 	news = _enum_news ()
 	feed = ""
 	lastmodified = ""

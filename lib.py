@@ -105,8 +105,10 @@ def generate_header (title, caption, description, current_module):
 
 
 def generate_footer ():
-	return get_template ("footer")
+	return get_template ("footer") % {"uri": os.path.join (get_config("CanonicalName"),absolute_prefix())}
 
+def absolute_prefix ():
+	return get_config("SitePrefix") if get_config("SitePrefix") != "/" else ""
 
 def index (req):
 	return ""
