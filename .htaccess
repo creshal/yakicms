@@ -1,9 +1,9 @@
-Options +Indexes
+Options -Indexes
 <Files config.json>
 	Order Allow,Deny
 	Deny from all
 </Files>
-<FilesMatch "\.(tpl|news|inc)$">
+<FilesMatch "\.(tpl|news|inc|md|example)$">
 	Order Allow,Deny
 	Deny from all
 </FilesMatch>

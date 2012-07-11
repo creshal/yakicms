@@ -15,7 +15,6 @@ def index (req):
 	for entry in lib._entries ("homepage_widget"):
 		response += "<a href='%s'>"% lib.ljoin (entry[0])+"<h3>%(title)s</h3></a><div>%(content)s</div>" % entry[1]
 	return lib.respond (req, response, "","", lib.get_config ("SiteDesc"), None)
-	#TODO: Show all snippets from _mainpage. Then show all module excerpts
 
 def _enum_files (req=None):
 	if req: return
