@@ -5,7 +5,7 @@ from os.path import dirname,basename,exists
 from os.path import join as djoin
 from markdown import markdown
 sys.path.append (djoin (dirname(__file__),".."))
-import lib
+import lib,traceback
 
 def index (req, repo=None, version="0.0.0", OS="None"):
 	if not repo:
@@ -26,9 +26,9 @@ def index (req, repo=None, version="0.0.0", OS="None"):
 		else:
 			return lib.e404 (req, "Could not find a matching repository.", module_info())
 		try:
-			ver = _latest_ver (repo=repo)
-		except:
-			apache.log_error (str(e))
+			ver = _latest_ver (repo=repository)
+		except Exception as e:
+			apache.log_error (traceback.format_exc())
 			return lib.e404 (req, "Repository corrupt or wrong configuration, please contact the administrator.", module_info())
 		if version == ver:
 			return lib.respond (req, "You're already running the lastest version of %s." % repository["name"], "Downloads", "Downloads", "Updater", module_info())

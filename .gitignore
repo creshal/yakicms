@@ -4,4 +4,9 @@ config.json
 */*.pyc
 */*.news
 */*.md
-
+Downloads/*.exe
+Downloads/*.xz
+Downloads/*.gz
+Downloads/*.bz2
+Downloads/*.tar
+uploads/

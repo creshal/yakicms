@@ -40,9 +40,9 @@ def generate_page (page, news_amount_factor, show_nav=True):
 			page_str += '<a class="link %(cls)s" href="?page=%(i)i">%(i)i</a> | ' % {"i":i, "cls": "em" if i == page else ""}
 
 		if page > 0:
-			page_str = '<a class="link" href="?page=0"><img class="inline" src="/static/first.png" alt="goto first page"/>Newest</a> | <a rel="prev" class="link" href="?page=%(i)i"><img class="inline" src="/static/prev.png" alt="goto newer page"/>Newer</a> | ' % {"i": page-1} + page_str
+			page_str = '<a class="link" href="?page=0"><img width="16" height="16" class="inline" src="/static/first.png" alt="goto first page"/>Newest</a> | <a rel="prev" class="link" href="?page=%(i)i"><img width="16" height="16" class="inline" src="/static/prev.png" alt="goto newer page"/>Newer</a> | ' % {"i": page-1} + page_str
 		if page < (pages-1):
-			page_str += '<a rel="next" class="link" href="?page=%(i)i">Older<img class="inline" src="/static/next.png" alt="goto older page"/></a> | <a class="link" href="?page=%(l)i">Oldest<img class="inline" src="/static/last.png" alt="goto last page"/></a>' % {"i": page+1, "l": pages-1}
+			page_str += '<a rel="next" class="link" href="?page=%(i)i">Older<img class="inline" width="16" height="16" src="/static/next.png" alt="goto older page"/></a> | <a class="link" href="?page=%(l)i">Oldest<img class="inline" width="16" height="16" src="/static/last.png" alt="goto last page"/></a>' % {"i": page+1, "l": pages-1}
 
 	return lib.get_template ("news_pages") % {"pages": page_str, "content": content}
 

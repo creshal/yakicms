@@ -93,7 +93,7 @@ def _generate_menu (current):
 			cls = "em" if current and entry_info["name"] == current["name"] else ""
 			menuitems.append ((entry_info["order"], entry_tpl % {"icon": ljoin (iconfile), "name": entry_info["name"] if "name" in entry_info else entry, "cls": cls, "path": ljoin (entry)}))
 
-	menu = '<div class="menu %(cls)s"><a class="breadcrumb" href="%(site_prefix)s"><img class="inline" src="/static/home.png" alt="home"/>Home</a></div>' % {"site_prefix":get_config("SitePrefix"), "cls": "" if current else "em"}
+	menu = get_template ('menu') % {'path': get_config("SitePrefix"), "cls": "" if current else "em", 'icon': '/static/home.png','name': 'Home'}
 	for item in sorted (menuitems, key=lambda item: item[0]):
 		menu += item[1]
 
@@ -101,7 +101,9 @@ def _generate_menu (current):
 
 
 def generate_header (title, caption, description, current_module):
-	return get_template("header") % {"title": escape (title, False) ,"caption": escape (caption, False) ,"desc": escape (description, False) ,"site_title":get_config("SiteTitle"),"site_desc": get_config("SiteDesc"),"menu": _generate_menu(current_module),"site_prefix": get_config("SitePrefix"),"headers":_generate_headers()}
+	caption = escape (caption, False)
+	caption = u'\xbb ' + caption if caption else ''
+	return get_template("header") % {"title": escape (title, False) ,"caption": caption,"desc": escape (description, False) ,"site_title":get_config("SiteTitle"),"site_desc": get_config("SiteDesc"),"menu": _generate_menu(current_module),"site_prefix": get_config("SitePrefix"),"headers":_generate_headers()}
 
 
 def generate_footer ():
