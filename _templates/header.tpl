@@ -4,7 +4,7 @@
 		<title>%(site_title)s &#8211; %(title)s</title>
 		<meta charset="UTF-8">
 		<meta name="description" content="%(desc)s"/>
-		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="/static/yswd3.css" />
 		%(headers)s
 </head>
